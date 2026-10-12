@@ -1,6 +1,6 @@
 import { displayToken } from '../game/equations.js';
 
-/** A row of Nerdle tiles. `state`: idle | correct | wrong | ghost. */
+/** A row of equation tiles. `state`: idle | correct | wrong | ghost. */
 export function TileRow({ text, state = 'idle', size = 'md', label, highlight }) {
   const tokens = [...text];
   return (

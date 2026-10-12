@@ -30,7 +30,7 @@ try {
       isMobile: !!p.mobile,
       hasTouch: !!p.mobile,
     });
-    await ctx.addInitScript(() => localStorage.setItem('nerdle-rush:tutorialDone', 'true'));
+    await ctx.addInitScript(() => localStorage.setItem('mathsrush:tutorialDone', 'true'));
     const page = await ctx.newPage();
     const cdp = await ctx.newCDPSession(page);
     await cdp.send('Emulation.setCPUThrottlingRate', { rate: p.cpu });

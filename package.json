@@ -1,8 +1,8 @@
 {
-  "name": "nerdle-rush",
+  "name": "mathsrush",
   "private": true,
   "version": "1.0.0",
-  "description": "Nerdle Rush \u2014 an endless runner where you steer into the TRUE equation.",
+  "description": "MathsRush — an endless runner where you steer into the TRUE equation.",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -153,6 +153,7 @@ export function createRenderer(backCanvas, frontCanvas) {
   function draw(g, theme, dt, { worldOffset = g.distance * 2 } = {}) {
     time += dt;
     spriteBudget = SPRITE_BUDGET;
+    coinColor = theme.correct;
     if (backCtx) {
       // Static layer, blitted 1:1 in device pixels.
       backCtx.setTransform(1, 0, 0, 1, 0, 0);
@@ -268,7 +269,7 @@ export function createRenderer(backCanvas, frontCanvas) {
   // ---------------------------------------------------------------- track
 
   function drawSeams(ctx, theme, worldOffset) {
-    // The track is a board of Nerdle tiles rushing towards you; the moving
+    // The track is a board of tiles rushing towards you; the moving
     // part is just the dark seams between rows, batched into one fill.
     const v = view;
     const phase = worldOffset % ROW_LEN;
@@ -598,7 +599,7 @@ export function createRenderer(backCanvas, frontCanvas) {
 
   /**
    * Obstacle faces, rasterised once at a fixed reference size and scaled.
-   * All are built from black Nerdle "not in the answer" tiles.
+   * All are built from dark hazard tiles.
    */
   function obstacleSprite(kind, theme) {
     const key = `o|${kind}|${theme.name}|${view.ppu.toFixed(1)}`;
@@ -661,7 +662,7 @@ export function createRenderer(backCanvas, frontCanvas) {
       ctx.save();
       roundRect(ctx, 0, h - band, w, band, band * 0.3);
       ctx.clip();
-      ctx.fillStyle = '#161803';
+      ctx.fillStyle = '#1f2430';
       ctx.fillRect(0, h - band, w, band);
       ctx.fillStyle = theme.hazard;
       for (let x = -band; x < w + band; x += band * 1.4) {
@@ -686,6 +687,8 @@ export function createRenderer(backCanvas, frontCanvas) {
 
   // ---------------------------------------------------------------- particles
 
+  let coinColor = '#16A34A';
+
   function drawParticles(ctx, dt) {
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
@@ -702,7 +705,7 @@ export function createRenderer(backCanvas, frontCanvas) {
       ctx.globalAlpha = 1 - p.life / p.max;
       ctx.fillStyle = p.color;
       if (p.kind === 'coin') {
-        // A little teal ✓ tile that flies up into the HUD coin counter.
+        // A little green ✓ tile that flies up into the HUD coin counter.
         const k = p.life / p.max;
         const e = k * k * (3 - 2 * k);
         const x = p.x0 + (view.width - 64 - p.x0) * e;
@@ -710,7 +713,7 @@ export function createRenderer(backCanvas, frontCanvas) {
         const sz = 26 * (1 - 0.35 * k);
         mark(x - sz, y - sz, sz * 2, sz * 2);
         ctx.globalAlpha = 1;
-        ctx.fillStyle = '#4E9E8E';
+        ctx.fillStyle = coinColor;
         roundRect(ctx, x - sz / 2, y - sz / 2, sz, sz, sz * 0.22);
         ctx.fill();
         ctx.fillStyle = '#fff';

@@ -7,19 +7,19 @@ import { makeEquation } from './game/equations.js';
 describe('App', () => {
   it('shows the start screen with title, tagline and PLAY', () => {
     render(<App />);
-    expect(screen.getByRole('heading', { name: /nerdle rush/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /mathsrush/i })).toBeTruthy();
     expect(screen.getByText(/Swipe into the TRUE equation\. Don't get caught out\./)).toBeTruthy();
     expect(screen.getByTestId('play').textContent).toBe('PLAY');
   });
 
-  it('toggles mathlete dark mode and remembers it', () => {
+  it('toggles dark mode and remembers it', () => {
     render(<App />);
-    const toggle = screen.getAllByRole('switch', { name: /mathlete/i })[0];
+    const toggle = screen.getAllByRole('switch', { name: /dark mode/i })[0];
     const before = document.documentElement.dataset.theme;
     fireEvent.click(toggle);
     const after = document.documentElement.dataset.theme;
     expect(after).not.toBe(before);
-    expect(JSON.parse(localStorage.getItem('nerdle-rush:theme'))).toBe(after);
+    expect(JSON.parse(localStorage.getItem('mathsrush:theme'))).toBe(after);
   });
 
   it('opens and closes the rules', () => {
@@ -44,11 +44,11 @@ describe('App', () => {
       await new Promise((r) => setTimeout(r, 50));
     });
     expect(screen.queryByRole('button', { name: /skip tutorial/i })).toBeNull();
-    expect(JSON.parse(localStorage.getItem('nerdle-rush:tutorialDone'))).toBe(true);
+    expect(JSON.parse(localStorage.getItem('mathsrush:tutorialDone'))).toBe(true);
   });
 
   it('after the tutorial, PLAY goes straight into a run', async () => {
-    localStorage.setItem('nerdle-rush:tutorialDone', 'true');
+    localStorage.setItem('mathsrush:tutorialDone', 'true');
     render(<App />);
     expect(screen.queryByText(/First time\?/)).toBeNull();
     expect(screen.getByRole('button', { name: 'Tutorial' })).toBeTruthy();
@@ -75,14 +75,14 @@ describe('App', () => {
 describe('maths levels', () => {
   it('picking a level is remembered, and each level keeps its own best', () => {
     localStorage.clear();
-    localStorage.setItem('nerdle-rush:best', '500'); // a best from before levels existed
+    localStorage.setItem('mathsrush:best', '500'); // a best from before levels existed
     render(<App />);
     // Medium is the default and inherits the old best.
     expect(screen.getByTestId('level-medium').getAttribute('aria-checked')).toBe('true');
     expect(screen.getByText('best 500')).toBeTruthy();
     fireEvent.click(screen.getByTestId('level-hard'));
     expect(screen.getByTestId('level-hard').getAttribute('aria-checked')).toBe('true');
-    expect(JSON.parse(localStorage.getItem('nerdle-rush:level'))).toBe('hard');
+    expect(JSON.parse(localStorage.getItem('mathsrush:level'))).toBe('hard');
     expect(screen.getByText('best 0')).toBeTruthy();
     expect(screen.getByText(/two-digit sums/)).toBeTruthy();
     fireEvent.click(screen.getByTestId('level-easy'));
@@ -144,7 +144,7 @@ describe('GameOver', () => {
     );
     expect(screen.getByTestId('death-sentence').textContent).toBe("You picked 9+3=6 — it's actually 12");
     expect(screen.getByText(/9−3=6 would have been true/)).toBeTruthy();
-    expect(screen.getByText(/Nerdle Rush Daily #/)).toBeTruthy();
+    expect(screen.getByText(/MathsRush Daily #/)).toBeTruthy();
   });
 
   it('describes obstacle deaths', () => {

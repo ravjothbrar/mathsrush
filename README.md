@@ -1,20 +1,20 @@
-# Nerdle Rush
+# MathsRush
 
 **An endless runner where the only way forward is the true equation.**
 
 Three lanes. Equations race towards you on tile panels. Run through a true one and it shatters into a coin; run into a false one and the run is over, instantly. No shield, no second chance, no matter how far you've come. In between come Subway-Surfers-style walls, hurdles and beams, sometimes in the same row as the maths.
 
-It's the Nerdle skill — *does this calculation hold?* — compressed into a second, under pressure, getting faster.
+One skill — *does this calculation hold?* — compressed into a second, under pressure, getting faster.
 
-> An unsolicited prototype for [Nerdle](https://nerdlegame.com). Built by [Ravjoth Brar](https://ravjothbrar.com).
+> Built by [Ravjoth Brar](https://ravjothbrar.com).
 
 | Start | Tutorial | Running |
 |---|---|---|
 | ![Start screen](docs/start.jpg) | ![Tutorial](docs/tutorial.jpg) | ![Running](docs/running.jpg) |
 
-| Caught out | Game over | Mathlete dark mode | Phone |
+| Caught out | Game over | Dark mode | Phone |
 |---|---|---|---|
-| ![Caught out](docs/caught.jpg) | ![Game over](docs/game-over.jpg) | ![Mathlete](docs/mathlete.jpg) | ![Phone](docs/mobile.jpg) |
+| ![Caught out](docs/caught.jpg) | ![Game over](docs/game-over.jpg) | ![Dark mode](docs/dark.jpg) | ![Phone](docs/mobile.jpg) |
 
 ---
 
@@ -44,7 +44,7 @@ Everything arrives as a **row**: three lanes side by side, reaching you at the s
 
 | Lane | What it is | What to do |
 |---|---|---|
-| **Equation panel** | a standing board of Nerdle tiles | run through it if it's **true** (coin); a false one ends the run |
+| **Equation panel** | a standing board of number tiles | run through it if it's **true** (coin); a false one ends the run |
 | **Wall** | a tall 3D block of black tiles | can't be jumped or ducked — switch lanes (you can't sidestep into one that's passing you, either) |
 | **Hurdle** | a low bar | jump |
 | **Beam** | a tall overhead gantry with a hazard-striped underside | duck |
@@ -83,9 +83,9 @@ Every row always has at least one lane you can get through cleanly. A test plays
 | Times-table neighbour | 7×8=**48**, 56÷8=**6** | the row next door — the classic slip |
 | Swapped operator | 9**+**3=6 | the numbers are right, the sign isn't (absurd swaps like 29×8=21 are filtered out) |
 
-Decoys keep the same tile count as the true equation wherever possible, so length is never a tell. Equations never exceed **8 tiles** — the length of a classic Nerdle row.
+Decoys keep the same tile count as the true equation wherever possible, so length is never a tell. Equations never exceed **8 tiles**, so they always fit a lane.
 
-**Three maths levels.** Pick how hard the sums are on the start screen; your choice is remembered. Only the arithmetic changes: speed, obstacles and scoring are identical, so every level is the same game. Best scores are kept per level, and the level is shown on the game-over screen and the share card ("Nerdle Rush · Hard").
+**Three maths levels.** Pick how hard the sums are on the start screen; your choice is remembered. Only the arithmetic changes: speed, obstacles and scoring are identical, so every level is the same game. Best scores are kept per level, and the level is shown on the game-over screen and the share card ("MathsRush · Hard").
 
 | Level | Sums | Decoys |
 |---|---|---|
@@ -107,13 +107,13 @@ Decoys keep the same tile count as the true equation wherever possible, so lengt
 
 **Scoring.** Each true lane is a coin worth 10 × your multiplier. The multiplier goes up by one every 5 correct in a row (max ×5) and resets to ×1 when you hit an obstacle. Distance and time are tracked as secondary stats.
 
-**Game over explains itself.** *"You picked 7×8=54 — it's actually 56"*, with your pick in plum, the corrected equation, and the true lane in teal — plus a Nerdle-style share card (🟩 correct · 🟨 shield lost · 🟪 caught out · ⬛ crashed).
+**Game over explains itself.** *"You picked 7×8=54 — it's actually 56"*, with your pick in red, the corrected equation, and the true lane in green — plus a share card of coloured squares (🟩 correct · 🟨 shield lost · 🟥 caught out · ⬛ crashed).
 
-**Daily Rush.** A seeded run that's identical for everyone on a given day (*Daily #N*), like Nerdle's daily puzzle.
+**Daily Rush.** A seeded run that's identical for everyone on a given day (*Daily #N*).
 
 ## Brand
 
-Classic mode mirrors nerdlegame.com: plum `#7A1F4B`, teal `#4E9E8E`, white chrome, rounded pill buttons, equation tiles exactly like the Nerdle board (unrevealed → white, true → teal, false → plum). The **mathlete** toggle mirrors Nerdle's mathlete spin-off: navy `#1e1e2e` with hot magenta `#c8447a`. Type is Nunito (tiles, UI) and Quicksand (wordmark), bundled locally. The runner is the Nerdle cube — from behind it wears the "n", and when you're caught out it spins round to face you, aghast.
+**Light** mode is a white UI with an indigo accent (`#4F46E5`) over an indigo night track. **Dark** mode is slate with an amber accent (`#F59E0B`). Everywhere, true is green and false is red. Type is Nunito, bundled locally. The runner is an orange number tile in sneakers, with a "+" on its back; when you're caught out it spins round to face you, aghast. The logo is a "+" tile with speed lines.
 
 ## Performance
 
@@ -191,4 +191,4 @@ The engine runs on a fixed 120Hz timestep and emits events (`coin`, `death`, `sh
 
 `npm run build` produces a fully static `dist/` with relative asset paths, so it works from any host or sub-path.
 
-It deploys to **GitHub Pages** through `.github/workflows/deploy.yml` on every push to `main`. One-time setup: *Settings → Pages → Source: GitHub Actions*. With `ravjothbrar.com` configured on the user site, the game is served at **ravjothbrar.com/nerdle/**. There's deliberately no `CNAME` in this repo, because that would claim the whole domain. `ci.yml` runs unit tests, the build and the Chromium e2e test on every other branch and PR.
+It deploys to **GitHub Pages** through `.github/workflows/deploy.yml` on every push to `main`. One-time setup: *Settings → Pages → Source: GitHub Actions*. With `ravjothbrar.com` configured on the user site, the game is served at **ravjothbrar.com/&lt;repo-name&gt;/**. There's deliberately no `CNAME` in this repo, because that would claim the whole domain. `ci.yml` runs unit tests, the build and the Chromium e2e test on every other branch and PR.

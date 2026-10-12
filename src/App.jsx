@@ -23,7 +23,10 @@ export default function App() {
   const audio = useMemo(() => createAudio(), []);
   const [screen, setScreen] = useState('start'); // start | tutorial | tutorialDone | playing | over
   const [tutorialDone, setTutorialDone] = useState(() => load('tutorialDone', false));
-  const [theme, setTheme] = useState(() => load('theme', prefersDark() ? 'mathlete' : 'classic'));
+  const [theme, setTheme] = useState(() => {
+    const t = load('theme', null);
+    return t === 'light' || t === 'dark' ? t : prefersDark() ? 'dark' : 'light';
+  });
   const [muted, setMuted] = useState(() => load('muted', false));
   const [mode, setMode] = useState(() => load('mode', 'endless'));
   const [level, setLevel] = useState(() => {
@@ -44,7 +47,7 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'mathlete' ? '#1e1e2e' : '#ffffff');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0f1420' : '#ffffff');
     save('theme', theme);
   }, [theme]);
   useEffect(() => {
@@ -123,7 +126,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey);
   }, [screen, rules, play, startRun]);
 
-  const toggleTheme = () => setTheme((t) => (t === 'mathlete' ? 'classic' : 'mathlete'));
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
   const inRun = screen === 'playing' || screen === 'over';
   const inTutorial = screen === 'tutorial' || screen === 'tutorialDone';
   const immersive = screen === 'playing' || screen === 'tutorial';

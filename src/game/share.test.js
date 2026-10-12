@@ -4,9 +4,9 @@ import { makeEquation } from './equations.js';
 import { multiplierFor, streakProgress } from './scoring.js';
 
 describe('share card', () => {
-  it('renders Nerdle-style rows of 10', () => {
+  it('renders rows of 10 coloured squares', () => {
     const h = [...Array(12).fill('correct'), 'shield', 'wrong'];
-    expect(historyRows(h)).toEqual(['🟩'.repeat(10), '🟩🟩🟨🟪']);
+    expect(historyRows(h)).toEqual(['🟩'.repeat(10), '🟩🟩🟨🟥']);
   });
 
   it('collapses long runs', () => {
@@ -27,23 +27,23 @@ describe('share card', () => {
         history: ['correct', 'wrong'],
         death: { cause: 'equation', equation: makeEquation(9, '-', 3, 5) },
       },
-      { mode: 'daily', url: 'https://ravjothbrar.com/nerdle/', date: '2026-09-29' },
+      { mode: 'daily', url: 'https://ravjothbrar.com/mathsrush/', date: '2026-09-29' },
     );
     expect(text).toBe(
       [
-        'Nerdle Rush Daily #3 🏃',
+        'MathsRush Daily #3 🏃',
         '1,240 pts · 312m · 40 ✓ · best streak 22',
-        '🟩🟪',
+        '🟩🟥',
         'Caught out by 9−3=5',
-        'https://ravjothbrar.com/nerdle/',
+        'https://ravjothbrar.com/mathsrush/',
       ].join('\n'),
     );
   });
 
   it('names the maths level', () => {
     const summary = { score: 10, distance: 5, coins: 1, bestStreak: 1, history: ['correct'], level: 'hard' };
-    expect(shareText(summary).split('\n')[0]).toBe('Nerdle Rush · Hard 🏃');
-    expect(shareText(summary, { mode: 'daily', date: '2026-09-27' }).split('\n')[0]).toBe('Nerdle Rush Daily #1 · Hard 🏃');
+    expect(shareText(summary).split('\n')[0]).toBe('MathsRush · Hard 🏃');
+    expect(shareText(summary, { mode: 'daily', date: '2026-09-27' }).split('\n')[0]).toBe('MathsRush Daily #1 · Hard 🏃');
   });
 
   it('numbers daily runs from launch day', () => {
@@ -55,7 +55,7 @@ describe('share card', () => {
   it('persists values and survives bad storage', () => {
     save('x', { a: 1 });
     expect(load('x', null)).toEqual({ a: 1 });
-    localStorage.setItem('nerdle-rush:bad', '{nope');
+    localStorage.setItem('mathsrush:bad', '{nope');
     expect(load('bad', 7)).toBe(7);
   });
 });
