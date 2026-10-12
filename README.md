@@ -10,11 +10,11 @@ One skill — *does this calculation hold?* — compressed into a second, under 
 
 | Start | Tutorial | Running |
 |---|---|---|
-| ![Start screen](docs/start.jpg) | ![Tutorial](docs/tutorial.jpg) | ![Running](docs/running.jpg) |
+| ![Start screen](docs/screenshots/mathsrush-start.jpg) | ![Tutorial](docs/screenshots/mathsrush-tutorial.jpg) | ![Running](docs/screenshots/mathsrush-running.jpg) |
 
 | Caught out | Game over | Dark mode | Phone |
 |---|---|---|---|
-| ![Caught out](docs/caught.jpg) | ![Game over](docs/game-over.jpg) | ![Dark mode](docs/dark.jpg) | ![Phone](docs/mobile.jpg) |
+| ![Caught out](docs/screenshots/mathsrush-caught.jpg) | ![Game over](docs/screenshots/mathsrush-game-over.jpg) | ![Dark mode](docs/screenshots/mathsrush-dark.jpg) | ![Phone](docs/screenshots/mathsrush-mobile.jpg) |
 
 ---
 
