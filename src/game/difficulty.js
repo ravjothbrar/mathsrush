@@ -127,7 +127,7 @@ export function operatorSwapChance(p) {
 
 /**
  * Operand ranges grow over time. Equations are capped at 8 tiles — the same
- * length as a classic Nerdle row.
+ * length a short equation needs, and what fits a lane comfortably.
  */
 export function operandRangesAt(t, level = DEFAULT_LEVEL) {
   const p = clamp01(t / 90);

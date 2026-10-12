@@ -11,9 +11,9 @@ export function Header({ theme, onToggleTheme, muted, onToggleMute, onRules }) {
   return (
     <header className="header">
       <div className="brand">
-        <LogoCube />
+        <Logo />
         <span className="brand__word">
-          nerdle<span className="brand__dot">.</span> <span className="brand__rush">rush</span>
+          Maths<span className="brand__rush">Rush</span>
         </span>
       </div>
       <nav className="header__icons">
@@ -47,28 +47,36 @@ function IconButton({ label, onClick, children, pressed }) {
 }
 
 export function ThemeToggle({ theme, onToggle }) {
-  const dark = theme === 'mathlete';
+  const dark = theme === 'dark';
   return (
     <button
       className={`theme-toggle ${dark ? 'theme-toggle--dark' : ''}`}
       onClick={onToggle}
       role="switch"
       aria-checked={dark}
-      aria-label="Mathlete dark mode"
-      title={dark ? 'Switch to classic' : 'Switch to mathlete dark mode'}
+      aria-label="Dark mode"
+      title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <span className="theme-toggle__knob">{dark ? '☾' : '☀'}</span>
     </button>
   );
 }
 
-export function LogoCube({ size = 34 }) {
+/** The MathsRush mark: a "+" tile with speed lines. */
+export function Logo({ size = 34 }) {
   return (
-    <svg className="logo-cube" viewBox="0 0 40 40" width={size} height={size} aria-hidden="true">
-      <path d="M6 10 L12 4 L36 4 L30 10 Z" fill="var(--mascot-top)" />
-      <path d="M30 10 L36 4 L36 30 L30 36 Z" fill="var(--mascot-side)" />
-      <rect x="4" y="10" width="26" height="26" rx="4" fill="var(--mascot-front)" />
-      <path d="M10.5 31 V17 H20.5 a4 4 0 0 1 4 4 V31 H20.5 V21 H14.5 V31 Z" fill="#fff" />
+    <svg className="logo" viewBox="0 0 40 40" width={size} height={size} aria-hidden="true">
+      <g stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" opacity="0.55">
+        <path d="M2 15 H8" />
+        <path d="M4 22 H9" />
+        <path d="M2 29 H8" />
+      </g>
+      <rect x="11" y="6" width="28" height="28" rx="8" fill="var(--accent)" />
+      <rect x="11" y="31" width="28" height="5" rx="2.5" fill="var(--accent-hover)" />
+      <g fill="var(--accent-ink)">
+        <rect x="22.5" y="12" width="5" height="16" rx="2" />
+        <rect x="17" y="17.5" width="16" height="5" rx="2" />
+      </g>
     </svg>
   );
 }
@@ -98,7 +106,7 @@ export function StartScreen({
           <Mascot facing="front" className="start__mascot" />
           <div>
             <h1 className="title">
-              Nerdle <span>Rush</span>
+              Maths<span>Rush</span>
             </h1>
             <p className="tagline">Swipe into the TRUE equation. Don&apos;t get caught out.</p>
           </div>
@@ -147,7 +155,7 @@ export function StartScreen({
               </button>
             )}
             <label className="dark-label">
-              <span>{theme === 'mathlete' ? 'Mathlete dark' : 'Classic'}</span>
+              <span>{theme === 'dark' ? 'Dark' : 'Light'}</span>
               <ThemeToggle theme={theme} onToggle={onToggleTheme} />
             </label>
           </div>
@@ -264,7 +272,7 @@ export function RulesModal({ onClose, onTutorial }) {
           </span>
         </div>
         {onTutorial && (
-          <button className="pill pill--teal rules__tutorial" onClick={onTutorial}>
+          <button className="pill pill--good rules__tutorial" onClick={onTutorial}>
             Play the tutorial
           </button>
         )}
@@ -369,8 +377,8 @@ export function GameOver({ summary, best, isNewBest, mode, onAgain, onMenu }) {
 
         <div className="sharecard">
           <div className="sharecard__head">
-            <LogoCube size={22} />
-            <span>{mode === 'daily' ? `Nerdle Rush Daily #${dailyNumber()}` : 'Nerdle Rush'}</span>
+            <Logo size={22} />
+            <span>{mode === 'daily' ? `MathsRush Daily #${dailyNumber()}` : 'MathsRush'}</span>
             {summary.level && (
               <span className={`level-chip level-chip--${summary.level}`}>{LEVELS[summary.level]?.label}</span>
             )}
@@ -385,7 +393,7 @@ export function GameOver({ summary, best, isNewBest, mode, onAgain, onMenu }) {
           <button className="pill pill--play" ref={againRef} onClick={onAgain} data-testid="again">
             Play again
           </button>
-          <button className="pill pill--teal" onClick={share}>
+          <button className="pill pill--good" onClick={share}>
             Share
           </button>
           <button className="pill pill--ghost" onClick={onMenu}>
@@ -410,7 +418,7 @@ function CaughtOut({ death }) {
       </div>
       <h2>Caught out!</h2>
       <p className="caught__sentence" data-testid="death-sentence">
-        You picked <b>{e.picked}</b> — it&apos;s actually <b className="teal">{e.actual}</b>
+        You picked <b>{e.picked}</b> — it&apos;s actually <b className="good">{e.actual}</b>
       </p>
       <div className="caught__rows">
         <div className="caught__row">

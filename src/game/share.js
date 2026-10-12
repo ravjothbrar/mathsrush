@@ -1,6 +1,6 @@
 // Share card + persistence helpers.
 
-export const SQUARES = { correct: '🟩', wrong: '🟪', shield: '🟨', crash: '⬛' };
+export const SQUARES = { correct: '🟩', wrong: '🟥', shield: '🟨', crash: '⬛' };
 export const LAUNCH_DAY = '2026-09-27';
 const MAX_SQUARES = 30;
 
@@ -12,14 +12,14 @@ export function todayKey(date = new Date()) {
   return `${y}-${m}-${d}`;
 }
 
-/** Daily Rush number: #1 on launch day, like Nerdle's puzzle numbers. */
+/** Daily Rush number: #1 on launch day, counting up one per day. */
 export function dailyNumber(key = todayKey()) {
   const ms = Date.parse(`${key}T00:00:00Z`) - Date.parse(`${LAUNCH_DAY}T00:00:00Z`);
   return Math.max(1, Math.round(ms / 86400000) + 1);
 }
 
 /**
- * Condense the run history into Nerdle-style rows of squares. Long runs
+ * Condense the run history into rows of coloured squares. Long runs
  * collapse their opening into a count so the card stays postable.
  */
 export function historyRows(history) {
@@ -39,7 +39,7 @@ export function historyRows(history) {
 const LEVEL_NAMES = { easy: 'Easy', medium: 'Medium', hard: 'Hard' };
 
 export function shareText(summary, { mode = 'endless', url = '', date = todayKey() } = {}) {
-  const base = mode === 'daily' ? `Nerdle Rush Daily #${dailyNumber(date)}` : 'Nerdle Rush';
+  const base = mode === 'daily' ? `MathsRush Daily #${dailyNumber(date)}` : 'MathsRush';
   const title = summary.level ? `${base} · ${LEVEL_NAMES[summary.level] ?? summary.level}` : base;
   const lines = [
     `${title} 🏃`,
@@ -57,7 +57,7 @@ export function shareText(summary, { mode = 'endless', url = '', date = todayKey
 
 export function load(key, fallback) {
   try {
-    const raw = globalThis.localStorage?.getItem(`nerdle-rush:${key}`);
+    const raw = globalThis.localStorage?.getItem(`mathsrush:${key}`);
     return raw == null ? fallback : JSON.parse(raw);
   } catch {
     return fallback;
@@ -66,7 +66,7 @@ export function load(key, fallback) {
 
 export function save(key, value) {
   try {
-    globalThis.localStorage?.setItem(`nerdle-rush:${key}`, JSON.stringify(value));
+    globalThis.localStorage?.setItem(`mathsrush:${key}`, JSON.stringify(value));
   } catch {
     /* ignore */
   }

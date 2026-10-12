@@ -107,7 +107,7 @@ export function createTutorial() {
 
     switch (t.step) {
       case 'intro':
-        if (!t.message) say('Welcome to Nerdle Rush!', 'You’re the cube. Here comes the track…');
+        if (!t.message) say('Welcome to MathsRush!', 'That’s you, the orange runner. Here comes the track…');
         if (t.timer > 1.6) startLesson(g, 0);
         break;
 

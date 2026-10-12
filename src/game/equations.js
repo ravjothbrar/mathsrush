@@ -1,4 +1,4 @@
-// Equation generation — the heart of Nerdle Rush.
+// Equation generation — the heart of MathsRush.
 //
 // Each gate shows three equations, exactly one of which is TRUE. Decoys are
 // never random noise: every decoy starts life as a real, correct equation

@@ -46,8 +46,8 @@ const errors = [];
 async function run(name, viewport, theme, isMobile = false) {
   const ctx = await browser.newContext({ viewport, deviceScaleFactor: 2, isMobile, hasTouch: isMobile });
   await ctx.addInitScript((t) => {
-    localStorage.setItem('nerdle-rush:theme', JSON.stringify(t));
-    localStorage.setItem('nerdle-rush:tutorialDone', 'true');
+    localStorage.setItem('mathsrush:theme', JSON.stringify(t));
+    localStorage.setItem('mathsrush:tutorialDone', 'true');
   }, theme);
   const page = await ctx.newPage();
   page.on('pageerror', (e) => errors.push(`${name}: ${e.message}`));
@@ -175,7 +175,7 @@ async function tutorial(name, viewport, isMobile = false) {
   await page.screenshot({ path: `${OUT}${name}-tutorial-done.png` });
   await page.click('[data-testid="start-run"]');
   await page.waitForFunction(() => window.__rush && !window.__rush.scripted && window.__rush.status === 'running');
-  assert.equal(await page.evaluate(() => localStorage.getItem('nerdle-rush:tutorialDone')), 'true');
+  assert.equal(await page.evaluate(() => localStorage.getItem('mathsrush:tutorialDone')), 'true');
   console.log(`✓ ${name}: tutorial completed (${seen.size} coach messages), real run started`);
   await ctx.close();
 }
@@ -183,9 +183,9 @@ async function tutorial(name, viewport, isMobile = false) {
 try {
   await tutorial('tutorial-desktop', { width: 1280, height: 800 });
   await tutorial('tutorial-mobile', { width: 390, height: 844 }, true);
-  await run('desktop-classic', { width: 1280, height: 800 }, 'classic');
-  await run('desktop-mathlete', { width: 1280, height: 800 }, 'mathlete');
-  await run('mobile-classic', { width: 390, height: 844 }, 'classic', true);
+  await run('desktop-light', { width: 1280, height: 800 }, 'light');
+  await run('desktop-dark', { width: 1280, height: 800 }, 'dark');
+  await run('mobile-light', { width: 390, height: 844 }, 'light', true);
   assert.deepEqual(errors, [], 'no console errors');
   console.log(`\nAll e2e checks passed. Screenshots in ${OUT}`);
 } finally {

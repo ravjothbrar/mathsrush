@@ -1,54 +1,56 @@
-/* Nerdle Rush — styles. Classic mirrors nerdlegame.com (plum + teal on
-   white); mathlete mirrors Nerdle's mathlete (navy + hot magenta). */
+/* MathsRush — styles. Light: white UI, indigo accent. Dark: slate with
+   an amber accent. True = green, false = red throughout. */
 
 :root,
-[data-theme='classic'] {
+[data-theme='light'] {
   --bg: #ffffff;
-  --fg: #1c1a22;
-  --muted: #6d6570;
-  --accent: #7a1f4b;
-  --accent-hover: #641840;
-  --accent-soft: #fbf1f6;
-  --teal: #4e9e8e;
-  --teal-hover: #3f8676;
-  --panel: #fbf1f6;
-  --border: #ecdbe5;
+  --fg: #16163a;
+  --muted: #64668a;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-ink: #ffffff;
+  --accent-soft: #eef0ff;
+  --good: #16a34a;
+  --good-hover: #15803d;
+  --bad: #e5484d;
+  --panel: #f4f5ff;
+  --border: #e0e3f7;
   --card: rgba(255, 255, 255, 0.95);
-  --card-shadow: 0 18px 50px rgba(40, 8, 28, 0.35);
+  --card-shadow: 0 18px 50px rgba(10, 8, 40, 0.35);
   --tile-bg: #ffffff;
-  --tile-border: #d9ccd4;
-  --tile-fg: #1c1a22;
-  --kbd-bg: #f3eaef;
-  --mascot-front: #7a1f4b;
-  --mascot-top: #a8457a;
-  --mascot-side: #52112f;
-  --mascot-limb: #3b2a35;
-  --focus: #4e9e8e;
+  --tile-border: #c7cbe8;
+  --tile-fg: #16163a;
+  --kbd-bg: #eef0ff;
+  --mascot-body: #ff7a45;
+  --mascot-edge: #d4541f;
+  --mascot-limb: #2a2a40;
+  --focus: #16a34a;
   color-scheme: light;
 }
 
-[data-theme='mathlete'] {
-  --bg: #1e1e2e;
-  --fg: #eeeef6;
-  --muted: #a3a3bb;
-  --accent: #c8447a;
-  --accent-hover: #d85a8d;
-  --accent-soft: #2a2238;
-  --teal: #4e9e8e;
-  --teal-hover: #5db0a0;
-  --panel: #26263a;
-  --border: #36364e;
-  --card: rgba(30, 30, 46, 0.95);
+[data-theme='dark'] {
+  --bg: #0f1420;
+  --fg: #eef1f8;
+  --muted: #94a0b8;
+  --accent: #f59e0b;
+  --accent-hover: #fbbf24;
+  --accent-ink: #1a1203;
+  --accent-soft: #2a2312;
+  --good: #22c55e;
+  --good-hover: #4ade80;
+  --bad: #f43f5e;
+  --panel: #182031;
+  --border: #263049;
+  --card: rgba(15, 20, 32, 0.96);
   --card-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
-  --tile-bg: #2c2c42;
-  --tile-border: #4a4a68;
+  --tile-bg: #1f2738;
+  --tile-border: #3a4560;
   --tile-fg: #ffffff;
-  --kbd-bg: #2c2c42;
-  --mascot-front: #c8447a;
-  --mascot-top: #e06d9c;
-  --mascot-side: #8e2855;
-  --mascot-limb: #d8d8e8;
-  --focus: #e06d9c;
+  --kbd-bg: #1f2738;
+  --mascot-body: #ff7a45;
+  --mascot-edge: #d4541f;
+  --mascot-limb: #e2e8f0;
+  --focus: #fbbf24;
   color-scheme: dark;
 }
 
@@ -135,21 +137,15 @@ kbd {
 }
 
 .brand__word {
-  font-family: 'Quicksand', 'Nunito', sans-serif;
-  font-weight: 400;
-  font-size: 28px;
-  letter-spacing: 0.5px;
-  color: var(--accent);
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: -0.3px;
+  color: var(--fg);
   line-height: 1;
 }
 
-.brand__dot {
-  color: var(--accent);
-}
-
 .brand__rush {
-  font-weight: 600;
-  color: var(--teal);
+  color: var(--accent);
 }
 
 .header__icons {
@@ -196,7 +192,7 @@ kbd {
   place-items: center;
   font-size: 13px;
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-ink);
   transition: transform 0.25s cubic-bezier(0.3, 1.4, 0.5, 1);
 }
 
@@ -234,7 +230,7 @@ kbd {
   left: 0;
   transform-origin: 50% 100%;
   will-change: transform;
-  --mascot-limb: #f5e3ee;
+  --mascot-limb: #eef0ff;
   /* A stroke, not a CSS filter: filters on an element that moves every
      frame force a full repaint, which is expensive on phones. */
   --mascot-outline: rgba(255, 255, 255, 0.8);
@@ -395,7 +391,7 @@ kbd {
 }
 
 .hud__mult--on > span:first-child {
-  background: var(--teal);
+  background: var(--good);
   border-radius: 999px;
   padding: 1px 10px;
   text-shadow: none;
@@ -412,7 +408,7 @@ kbd {
 .hud__streakbar > span {
   display: block;
   height: 100%;
-  background: var(--teal);
+  background: var(--good);
   border-radius: inherit;
   transition: width 0.2s;
 }
@@ -440,10 +436,10 @@ kbd {
   width: 1.05em;
   height: 1.05em;
   border-radius: 22%;
-  background: var(--teal);
+  background: var(--good);
   font-size: 0.8em;
   text-shadow: none;
-  box-shadow: 0 0 12px rgba(78, 158, 142, 0.8);
+  box-shadow: 0 0 12px rgba(22, 163, 74, 0.8);
 }
 
 .shield {
@@ -510,8 +506,8 @@ kbd {
   line-height: 1.3;
   padding: 10px 20px;
   border-radius: 999px;
-  background: #f3c14b;
-  color: #161803;
+  background: #facc15;
+  color: #1f2430;
   font-weight: 900;
   font-size: 18px;
   text-shadow: none;
@@ -520,9 +516,9 @@ kbd {
 }
 
 .hud__coach kbd {
-  background: #161803;
+  background: #1f2430;
   color: #fff;
-  border-color: #161803;
+  border-color: #1f2430;
 }
 
 .lesson {
@@ -545,13 +541,13 @@ kbd {
   animation: toast 0.35s cubic-bezier(0.3, 1.5, 0.5, 1);
 }
 
-[data-theme='mathlete'] .lesson {
+[data-theme='dark'] .lesson {
   background: rgba(38, 38, 58, 0.97);
   color: #f4f4fb;
 }
 
 .lesson--good {
-  border-top-color: var(--teal);
+  border-top-color: var(--good);
 }
 
 .lesson--bad {
@@ -560,7 +556,7 @@ kbd {
 }
 
 .lesson--warn {
-  border-top-color: #f3c14b;
+  border-top-color: #facc15;
 }
 
 .lesson__title {
@@ -570,7 +566,7 @@ kbd {
 }
 
 .lesson--good .lesson__title {
-  color: var(--teal);
+  color: var(--good);
 }
 
 .lesson--bad .lesson__title {
@@ -634,7 +630,7 @@ kbd {
 }
 
 .toast--speed {
-  background: linear-gradient(90deg, #f3c14b, #ff8a5c);
+  background: linear-gradient(90deg, #facc15, #ff8a5c);
   color: #1c1a22;
   font-size: 22px;
 }
@@ -671,11 +667,11 @@ kbd {
 }
 
 .toast--good {
-  background: var(--teal);
+  background: var(--good);
 }
 
 .toast--warn {
-  background: #f3c14b;
+  background: #facc15;
   color: #1c1a22;
 }
 
@@ -805,12 +801,12 @@ kbd {
   font-weight: 900;
   font-size: clamp(34px, 8vw, 46px);
   line-height: 1;
-  color: var(--accent);
+  color: var(--fg);
   letter-spacing: -0.5px;
 }
 
 .title span {
-  color: var(--teal);
+  color: var(--accent);
 }
 
 .tagline {
@@ -840,14 +836,14 @@ kbd {
 }
 
 .demo__lane--true .tiles {
-  filter: drop-shadow(0 0 8px rgba(78, 158, 142, 0.6));
+  filter: drop-shadow(0 0 8px rgba(22, 163, 74, 0.6));
 }
 
 .demo__tick {
   font-weight: 900;
   font-size: 11px;
   letter-spacing: 1px;
-  color: var(--teal);
+  color: var(--good);
 }
 
 .level {
@@ -891,20 +887,20 @@ kbd {
 }
 
 .level__opt--on {
-  color: #fff;
+  color: var(--accent-ink);
   background: var(--accent);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .level__opt--easy.level__opt--on {
-  background: var(--teal);
+  background: var(--good);
 }
 
 .level__opt--hard.level__opt--on {
-  background: #161803;
+  background: #1f2430;
 }
 
-[data-theme='mathlete'] .level__opt--hard.level__opt--on {
+[data-theme='dark'] .level__opt--hard.level__opt--on {
   background: #f4f4fb;
   color: #1e1e2e;
 }
@@ -933,16 +929,16 @@ kbd {
   border-radius: 999px;
   font-size: 12px;
   font-weight: 900;
-  color: #fff;
+  color: var(--accent-ink);
   background: var(--accent);
 }
 
 .level-chip--easy {
-  background: var(--teal);
+  background: var(--good);
 }
 
 .level-chip--hard {
-  background: #161803;
+  background: #1f2430;
 }
 
 .mode {
@@ -1001,8 +997,8 @@ kbd {
 
 .pill--play {
   background: var(--accent);
-  color: #fff;
-  box-shadow: 0 6px 0 var(--mascot-side), 0 10px 24px rgba(122, 31, 75, 0.35);
+  color: var(--accent-ink);
+  box-shadow: 0 6px 0 var(--accent-hover), 0 10px 24px rgba(79, 70, 229, 0.35);
 }
 
 .pill--play:hover {
@@ -1015,13 +1011,13 @@ kbd {
   padding: 16px;
 }
 
-.pill--teal {
-  background: var(--teal);
+.pill--good {
+  background: var(--good);
   color: #fff;
 }
 
-.pill--teal:hover {
-  background: var(--teal-hover);
+.pill--good:hover {
+  background: var(--good-hover);
 }
 
 .pill--ghost {
@@ -1128,14 +1124,14 @@ kbd {
 }
 
 .tile--correct {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--good);
+  border-color: var(--good);
   color: #fff;
 }
 
 .tile--wrong {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--bad);
+  border-color: var(--bad);
   color: #fff;
 }
 
@@ -1196,12 +1192,12 @@ kbd {
 
 .caught__sentence b {
   font-weight: 900;
-  color: var(--accent);
+  color: var(--bad);
 }
 
-.caught__sentence b.teal,
-.teal {
-  color: var(--teal);
+.caught__sentence b.good,
+.good {
+  color: var(--good);
 }
 
 .caught__rows {
@@ -1227,11 +1223,11 @@ kbd {
 }
 
 .caught__tag--wrong {
-  color: var(--accent);
+  color: var(--bad);
 }
 
 .caught__tag--true {
-  color: var(--teal);
+  color: var(--good);
 }
 
 .caught__note {
@@ -1290,7 +1286,7 @@ kbd {
   display: inline-block;
   padding: 4px 14px;
   border-radius: 999px;
-  background: #f3c14b;
+  background: #facc15;
   color: #1c1a22;
   animation: pop 0.5s cubic-bezier(0.3, 1.8, 0.5, 1) 0.4s both;
 }
@@ -1343,19 +1339,19 @@ kbd {
 }
 
 .history__cell--correct {
-  background: var(--teal);
+  background: var(--good);
 }
 
 .history__cell--wrong {
-  background: var(--accent);
+  background: var(--bad);
 }
 
 .history__cell--shield {
-  background: #f3c14b;
+  background: #facc15;
 }
 
 .history__cell--crash {
-  background: #161803;
+  background: #1f2430;
   border: 1px solid var(--muted);
 }
 
@@ -1375,7 +1371,7 @@ kbd {
   margin-top: 8px;
   font-weight: 800;
   font-size: 13px;
-  color: var(--teal);
+  color: var(--good);
 }
 
 .start__first {
@@ -1397,7 +1393,7 @@ kbd {
 .card--done h2 {
   margin: 0;
   font-weight: 900;
-  color: var(--teal);
+  color: var(--good);
 }
 
 .card--done p {
@@ -1502,7 +1498,7 @@ kbd {
     width: 64px;
   }
   .brand__word {
-    font-size: 24px;
+    font-size: 22px;
   }
   .stat__value {
     font-size: 17px;

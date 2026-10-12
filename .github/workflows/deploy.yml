@@ -1,7 +1,7 @@
 # Builds and deploys to GitHub Pages on every push to main.
 # One-time setup: repo Settings → Pages → Source: "GitHub Actions".
 # With ravjothbrar.com set as the custom domain on the user site
-# (ravjothbrar.github.io), this project is served at ravjothbrar.com/nerdle/.
+# (ravjothbrar.github.io), this project is served at ravjothbrar.com/<repo-name>/.
 # No CNAME file here on purpose — that would claim the whole domain.
 name: Deploy to GitHub Pages
 
